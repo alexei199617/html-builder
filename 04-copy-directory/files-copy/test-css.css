@@ -1,0 +1,6 @@
+* {
+  margin: unset;
+}
+body:hover {
+  cursor: pointer;
+}
