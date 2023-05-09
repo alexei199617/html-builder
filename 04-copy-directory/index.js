@@ -4,7 +4,6 @@ const fsPromises = fs.promises;
 const pathFolderFiles = path.join(__dirname, 'files');
 const pathFolderCopy = path.join(__dirname, 'files-copy');
 
-// Начудил я тут знатно и без ошибки никак не получается сделать - если увидишь\поймёшь откуда ошибка - отпишись пожалуйста
 
 function copyDir() {
   fs.mkdir(pathFolderCopy, err => {
@@ -38,16 +37,12 @@ function readFolder() {
 function comparing(a, b, bool) {
   a.sort();
   b.sort();
-  if (bool == true) {
-    b.shift();
-  }
   let newArr = [];
   let count = b.length;
-  for (let i = 0; i < (count + 1); i++) {
+  for (let i = 0; i < (count); i++) {
     if (!a[i]) {
       fs.unlink(path.join(pathFolderCopy, b[0]), err => {
         if (err) return;
-        comparing(a, b, true);
       });
     } else {
       if (a[i].toString() == b[0].toString()) {
@@ -55,7 +50,6 @@ function comparing(a, b, bool) {
       } else {
         fs.unlink(path.join(pathFolderCopy, b[0]), err => {
           if (err) return;
-          comparing(a, b, true);
         });
       }
     }
